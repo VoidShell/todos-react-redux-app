@@ -4,12 +4,20 @@ import {changeInput, insert, remove, toggle} from "../modules/todos";
 import Todos from "../components/Todos";
 
 const TodosContainer = () => {
-    const {input, todos} = useSelector(({todos}) => (
+    const {input, todos} = useSelector(({input, todos}) => (
         {
             input: todos.input,
             todos: todos.todos,
         }
     ))
+    // 구조분해할당을 하지 않을 경우
+    // const input = useSelector(state =>
+    //     state.todos.input
+    // );
+    // const todos = useSelector(state =>
+    //     state.todos.todos,
+    // );
+
     const dispatch = useDispatch();
     const onChangeInput = useCallback((input) => dispatch(changeInput(input)), [dispatch]);
     const onInsert = useCallback((text) => dispatch(insert(text)), [dispatch]);
